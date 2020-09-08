@@ -17,6 +17,15 @@ root.grid_rowconfigure(0,weight=1)
 root.grid_rowconfigure(1,weight=1)
 root.grid_rowconfigure(2,weight=1)
 
+# add menu bar
+def help_popup():
+    return
+
+menubar = Menu(root)
+helpmenu = Menu(menubar, tearoff=0)
+helpmenu.add_command(label="About", command=help_popup)
+menubar.add_cascade(label="Help", menu=helpmenu)
+
 # declare time variables
 minute = StringVar()
 second = StringVar()
@@ -30,7 +39,6 @@ pygame.mixer.music.load('timer.mp3')
 
 # declare blinds
 blinds = [[25,50], [50,100], [100, 200], [150, 300], [200,400], [250,500], [300,600], [400,800], [500,1000], [600,1200], [700,1400], [800,1600], [900,1800], [1000,2000]]
-
 
 def start():
     global blinds
@@ -112,5 +120,6 @@ button_pause.grid(row=3, column=4, columnspan=4)
 button_stop = Button(root, text='Stop', padx=15, pady=10, command=stop, state=DISABLED)
 button_stop.grid(row=3, column=8, columnspan=4)
 
+root.config(menu=menubar)
 root.resizable(False, False)
 root.mainloop()
